@@ -1,0 +1,57 @@
+print('                 SHOPPING CART LIST')
+items = ["bread", "chicken", "lettuce", "cheese", "noodles", "mixed_fruits"]
+prices = ["4.50", "5.50", "2.50", "3.75", "12.50", "10.50"]
+
+print("")
+print("Items in the Grocery Store")
+print("")
+for i in range(len(items)):
+    print('{:<10}'.format(items[i]) + '\t' + "$" + format(prices[i]))
+ 
+# References: https://pyformat.info/#string_pad_align   
+
+print("")
+
+
+def total_cost(shopping_cart):
+    total_cart = 0.0    
+    for i in range(len(shopping_cart)): 
+        search_item = shopping_cart[i]
+        index = items.index(search_item)
+        total_cart = total_cart + float(prices[index])
+    return(total_cart)
+
+
+def additems_print_cart(shopping_cart):
+    print("Add Items to the Shopping Cart ")
+    print("*type in lowercase")
+    print("(type 'done' when finished):")
+    print(" ")
+    while True:
+        add_items = input("Enter the Item name: ")
+        check_item = add_items.lower()
+        if add_items.lower() == 'done' :
+            break
+        if not add_items.lower() in items :
+            print("Item not found in Grocery store")
+            print("")
+            continue
+        shopping_cart.append(add_items)
+    
+    print("")
+    print("List of Items in Shopping Cart")
+    if shopping_cart:
+        for item in shopping_cart:
+            print(item)
+    else :
+        print("No Items in Shopping Cart")
+     
+    
+
+print(" ")
+
+shopping_cart = []
+additems_print_cart(shopping_cart)
+total_cart = total_cost(shopping_cart)
+
+print('Total Cost of Items in Shopping Cart : $' + '{:5.2f}'.format(total_cart))
